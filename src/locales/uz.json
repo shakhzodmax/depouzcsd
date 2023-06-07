@@ -1,0 +1,20 @@
+{
+    "navbar": {
+        "logo-part-1": "Depozitar ma'lumotlar",
+        "logo-part-2": "Markazi"
+    },
+    "main": {
+        "news": "Yangiliklar",
+        "news-desc": "Eng so'nggi yangiliklar",
+        "compass": "Compass",
+        "compass-desc": "qimmatli qog'ozlar bozorida depozitar ma'lumotlar bo'yicha qo'llanma",
+        "message": "Xabarnoma",
+        "message-desc": "qimmatli qog'ozlar bozori infratuzilmasidagi muhim o'zgarishlar to'g'risida sizning asosiy ma'lumot manbangiz",
+    },
+    "others": {
+        "more": "batafsil",
+        "view-all-news": "Barcha yangiliklarni ko'rish",
+        "view-all-compass": "Barchasini ko'rish",
+        "view-all-message": "Barcha xabarnomalarni ko'rish"
+    }
+}

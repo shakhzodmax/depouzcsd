@@ -1,0 +1,20 @@
+{
+    "navbar": {
+        "logo-part-1": "Depository information",
+        "logo-part-2": "Center"
+    },
+    "main": {
+        "news": "News",
+        "news-desc": "the latest news",
+        "compass": "Compass",
+        "compass-desc": "your guide to depository data on the securities market",
+        "message": "Reporter",
+        "message-desc": "your primary source of information about important changes in the infrastructure of the securities market"
+    },
+    "others": {
+        "more": "more",
+        "view-all-news": "View all news",
+        "view-all-compass": "View all compasses",
+        "view-all-message": "View all reporters"
+    }
+}
