@@ -1,6 +1,4 @@
 <template>
-    <div
-        class="2xl:p-5 xl:p-5 p-1">
       <div
           class="flex flex-col justify-center items-center relative rounded-lg hover:scale-[95%] shadow-md transition-all ease-linear cursor-pointer hover:bg-blue-500 select-none">
         <img :src="image" alt="title"
@@ -20,7 +18,6 @@
           </div>
       </div>
       </div>
-    </div>
 </template>
 
 <script>

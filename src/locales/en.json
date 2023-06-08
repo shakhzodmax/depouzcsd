@@ -4,6 +4,7 @@
         "logo-part-2": "Center"
     },
     "main": {
+        "home-page": "Main page",
         "news": "News",
         "news-desc": "the latest news",
         "compass": "Compass",
@@ -12,9 +13,14 @@
         "message-desc": "your primary source of information about important changes in the infrastructure of the securities market"
     },
     "others": {
+        "count": "Count",
+        "pagination": "Pagination",
+        "search": "Search by header",
         "more": "more",
         "view-all-news": "View all news",
         "view-all-compass": "View all compasses",
-        "view-all-message": "View all reporters"
+        "view-all-message": "View all reporters",
+        "go-back": "Return",
+        "watch": "Open the file"
     }
 }

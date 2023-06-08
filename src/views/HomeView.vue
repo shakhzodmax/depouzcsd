@@ -1,13 +1,13 @@
 <template>
-<div class="container mx-auto space-y-10 py-5">
+<div class="container mx-auto space-y-10 py-5 2xl:px-0 xl:px-0 lg:px-0 md:px-0 px-2">
     <section id="depoNews" class="border border-blue-500 rounded-lg p-3 mx-1 dark:bg-gray-900 bg-blue-50">
-        <h1 class="mx-5 uppercase text-3xl font-extrabold text-blue-500">
-            {{ $t("main.news")
+        <h1 class="mx-5 uppercase text-2xl font-extrabold text-blue-500">
+            {{ $t("main.news") 
         }}<small class="lowercase ml-4 font-light text-base text-gray-500 dark:text-gray-400">{{
           $t("main.news-desc")
         }}</small>
         </h1>
-        <div class="grid 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2">
+        <div class="grid 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 gap-4 p-4">
             <NewsBlock v-for="item in this.newsData" :key="item.id" :title="
             item.news.filter((e) => e.language === this.$i18n.locale)[0].title
           " :date="item.posted" :imageBase64="
@@ -32,7 +32,7 @@
           $t("main.compass-desc")
         }}</small>
         </h1>
-        <div class="grid 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2">
+        <div class="grid 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 gap-4 p-4">
             <CompassBlock v-for="item in this.compassData" :key="item.id" :title="
             item.depos.filter((e) => e.language === this.$i18n.locale)[0].title
           " :date="item.posted" :imageBase64="
@@ -57,7 +57,7 @@
           $t("main.message-desc")
         }}</small>
         </h1>
-        <div class="grid 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2">
+        <div class="grid 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 gap-4 p-4">
             <MessageBlock v-for="item in this.messageData" :key="item.id" :title="
             item.depos.filter((e) => e.language === this.$i18n.locale)[0].title
           " :date="item.posted" :imageBase64="

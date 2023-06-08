@@ -4,6 +4,7 @@
         "logo-part-2": "Markazi"
     },
     "main": {
+        "home-page": "Asosiy sahifa",
         "news": "Yangiliklar",
         "news-desc": "Eng so'nggi yangiliklar",
         "compass": "Compass",
@@ -12,9 +13,14 @@
         "message-desc": "qimmatli qog'ozlar bozori infratuzilmasidagi muhim o'zgarishlar to'g'risida sizning asosiy ma'lumot manbangiz",
     },
     "others": {
+        "count": "Soni",
+        "pagination": "Sahifalar soni",
+        "search": "Sarlavha bo'yicha izlash",
         "more": "batafsil",
         "view-all-news": "Barcha yangiliklarni ko'rish",
         "view-all-compass": "Barchasini ko'rish",
-        "view-all-message": "Barcha xabarnomalarni ko'rish"
+        "view-all-message": "Barcha xabarnomalarni ko'rish",
+        "go-back": "Orqaga qaytish",
+        "watch": "Faylni ochish"
     }
 }

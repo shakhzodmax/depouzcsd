@@ -1,6 +1,4 @@
 <template>
-    <div
-        class="2xl:p-5 xl:p-5 p-1">
       <div
           class="flex flex-col justify-center items-center relative rounded-lg hover:scale-[95%] shadow-md transition-all ease-linear cursor-pointer hover:bg-blue-500 select-none">
         <h2 class="absolute text-white z-50 text-center 2xl:text-xl xl:text-xs lg:text-xs text-sm px-4 mb-4 break-after-all">
@@ -22,7 +20,6 @@
           </div>
         </div>
       </div>
-    </div>
 </template>
 
 <script>
