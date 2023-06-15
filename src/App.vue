@@ -57,7 +57,7 @@ export default {
     background-clip: content-box;
   }
   .dark::-webkit-scrollbar-thumb {
-    background-color: #84cc16;
+    background-color: #afafaf;
     border-radius: 50px;
     border: 6px solid transparent;
     background-clip: content-box;

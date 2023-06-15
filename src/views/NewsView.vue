@@ -1,10 +1,14 @@
 <template>
-      <div
+<div v-if="loading">
+  <LoadingState />
+</div>
+<div else>
+  <div
           class="bg-gradient-to-tr from-blue-600 via-sky-600 to-indigo-500 h-56 w-full flex items-center dark:bg-gradient-to-tr dark:from-gray-900 dark:via-slate-800 dark:to-gray-900">
         <div class="container mx-auto">
           <div
               class="2xl:border-l-4 xl:border-l-4 lg:border-l-4 md:border-l-4 border-white dark:border-blue-600 2xl:text-start xl:text-start md:text-start text-center">
-            <h1 class="font-bold text-4xl text-white mb-2 indent-2 dark:text-blue-500">{{ $t('main.news') }}</h1>
+            <h1 class="font-bold text-4xl text-white mb-2 indent-2 dark:text-blue-500 uppercase">{{ $t('main.news') }}</h1>
           </div>
   
           <a onclick="window.history.back()"
@@ -34,7 +38,7 @@
                           d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                           clip-rule="evenodd"></path>
                   </svg>
-                  <span class="ml-1 font-medium md:ml-2 select-none">{{ $t('main.news') }}</span>
+                  <span class="ml-1 font-medium md:ml-2 select-none uppercase">{{ $t('main.news') }}</span>
                 </div>
               </li>
             </ol>
@@ -135,23 +139,24 @@
           " /> 
         </div>
       </div>
+</div>
   </template>
   
   <script>
   import NewsBlock from '@/components/NewsBlock.vue';
+import LoadingState from '@/components/LoadingState.vue';
+
   export default {
     components: {
-        NewsBlock
+        NewsBlock,
+        LoadingState
     },
     data() {
       return {
-        enteredPage: null,
         currentPage: 1,
         itemsPerPage: 8,
         endIndex: null,
         newsData: [],
-        startDate: null,
-        endDate: null,
         showSettings: false,
         loading: true,
         isSearch: false,
@@ -225,8 +230,8 @@
         this.showSettings = !this.showSettings;
       },
       changeView(value) {
-        localStorage.setItem("itemsPerPage", value);
-        const count = localStorage.getItem("itemsPerPage");
+        localStorage.setItem("newsPerPage", value);
+        const count = localStorage.getItem("newsPerPage");
         this.itemsPerPage = count;
         this.loading = true;
         this.axios.get(`/api/Depo/GetLastPageNumberDepoNews/${this.itemsPerPage}`)
@@ -285,8 +290,10 @@
                 })
                 .catch(error => {
                   console.log(error);
-                });
-            this.loading = false;
+                })
+                .finally(() => {
+                this.loading = false;
+              });
           })
     },
   };

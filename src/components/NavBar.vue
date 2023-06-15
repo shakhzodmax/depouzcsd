@@ -9,7 +9,7 @@
                     {{ $t("navbar.logo-part-2") }}
                 </p>
             </button>
-            <ul class="2xl:flex xl:flex lg:flex hidden space-x-14 items-center justify-between normal-case">
+            <ul class="2xl:flex xl:flex lg:flex hidden space-x-14 items-center justify-between uppercase">
                 <li @click="this.$router.push('/depoNews')" class="transition-all ease-in cursor-pointer hover:bg-blue-50 rounded-md bg-transparent border-0 dark:text-gray-400 text-gray-800 text-sm hover:text-blue-500 bg-sky-500 p-2">
                     {{ $t("main.news") }}
                 </li>

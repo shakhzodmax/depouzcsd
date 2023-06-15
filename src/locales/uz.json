@@ -5,11 +5,11 @@
     },
     "main": {
         "home-page": "Asosiy sahifa",
-        "news": "Yangiliklar",
+        "news": "DEPO-Yangiliklar",
         "news-desc": "Eng so'nggi yangiliklar",
-        "compass": "Compass",
+        "compass": "DEPO-Compass",
         "compass-desc": "qimmatli qog'ozlar bozorida depozitar ma'lumotlar bo'yicha qo'llanma",
-        "message": "Xabarnoma",
+        "message": "DEPO-Xabarnoma",
         "message-desc": "qimmatli qog'ozlar bozori infratuzilmasidagi muhim o'zgarishlar to'g'risida sizning asosiy ma'lumot manbangiz",
     },
     "others": {
@@ -17,10 +17,9 @@
         "pagination": "Sahifalar soni",
         "search": "Sarlavha bo'yicha izlash",
         "more": "batafsil",
-        "view-all-news": "Barcha yangiliklarni ko'rish",
-        "view-all-compass": "Barchasini ko'rish",
-        "view-all-message": "Barcha xabarnomalarni ko'rish",
+        "view-all": "Batafsil ko'rish",
         "go-back": "Orqaga qaytish",
-        "watch": "Faylni ochish"
+        "watch": "Faylni ochish",
+        "loading": "Yuklanmoqda"
     }
 }

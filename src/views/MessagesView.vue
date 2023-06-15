@@ -1,10 +1,14 @@
 <template>
+  <div v-if="loading">
+    <LoadingState />
+  </div>
+  <div v-else>
     <div
         class="bg-gradient-to-tr from-emerald-600 via-emerald-500 to-sky-500 h-56 w-full flex items-center dark:bg-gradient-to-tr dark:from-gray-900 dark:via-slate-800 dark:to-gray-900">
       <div class="container mx-auto">
         <div
             class="2xl:border-l-4 xl:border-l-4 lg:border-l-4 md:border-l-4 border-white dark:border-emerald-600 2xl:text-start xl:text-start md:text-start text-center">
-          <h1 class="font-bold text-4xl text-white mb-2 indent-2 dark:text-emerald-500">{{ $t('main.message') }}</h1>
+          <h1 class="font-bold text-4xl text-white mb-2 indent-2 dark:text-emerald-500 uppercase">{{ $t('main.message') }}</h1>
         </div>
 
         <a onclick="window.history.back()"
@@ -34,7 +38,7 @@
                         d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                         clip-rule="evenodd"></path>
                 </svg>
-                <span class="ml-1 font-medium md:ml-2 select-none">{{ $t('main.message') }}</span>
+                <span class="ml-1 font-medium md:ml-2 select-none uppercase">{{ $t('main.message') }}</span>
               </div>
             </li>
           </ol>
@@ -127,7 +131,7 @@
     <div class="mb-10 2xl:mx-0 xl:mx-0 lg:mx-0 mx-2">
       <div
           class="container mx-auto grid 2xl:grid-cols-4 xl:grid-cols-4 lg:grid-cols-4 md:grid-cols-2 grid-cols-1 gap-4">
-          <MessageBlock @click="storeMessage()" v-for="item in this.deposDate" :key="item.id" :title="
+          <MessageBlock @click="storeMessage(item.id)" v-for="item in this.deposDate" :key="item.id" :title="
             item.depos.filter((e) => e.language === this.$i18n.locale)[0].title
           " :date="item.posted" :imageBase64="
             item.depos.filter((e) => e.language === this.$i18n.locale)[0]
@@ -135,12 +139,16 @@
           " /> 
       </div>
     </div>
+  </div>
 </template>
 
 <script>
+import LoadingState from '@/components/LoadingState.vue';
 import MessageBlock from '@/components/MessageBlock.vue';
+
 export default {
   components: {
+    LoadingState,
     MessageBlock
   },
   data() {
@@ -209,7 +217,7 @@ export default {
     },
     searchQuery() {
       this.loading = true;
-      this.axios.post(`/api/Depo/GetMessagesBySearchParameters`, this.searchRequest)
+      this.axios.post(`/api/Depo/DepoMessagesBySearchParameters`, this.searchRequest)
           .then(response => {
             this.deposDate = response.data;
             this.isSearch = true;
@@ -225,8 +233,8 @@ export default {
       this.showSettings = !this.showSettings;
     },
     changeView(value) {
-      localStorage.setItem("itemsPerPage", value);
-      const count = localStorage.getItem("itemsPerPage");
+      localStorage.setItem("messagesPerPage", value);
+      const count = localStorage.getItem("messagesPerPage");
       this.itemsPerPage = count;
       this.loading = true;
       this.axios.get(`/api/Depo/GetLastPageNumberDepoMessages/${this.itemsPerPage}`)
@@ -237,7 +245,7 @@ export default {
             console.log(error);
           })
           .finally(() => {
-            this.axios.get(`/api/Depo/GetMessagesNewsByPageNumber/1/${this.itemsPerPage}`)
+            this.axios.get(`/api/Depo/GetDepoMessagesByPageNumber/1/${this.itemsPerPage}`)
                 .then(response => {
                   this.deposDate = response.data;
                 })
@@ -268,8 +276,8 @@ export default {
     },
   },
   mounted() {
-    if (localStorage.getItem("itemsPerPage")) {
-      this.itemsPerPage = localStorage.getItem("itemsPerPage");
+    if (localStorage.getItem("messagesPerPage")) {
+      this.itemsPerPage = localStorage.getItem("messagesPerPage");
     }
     this.axios.get(`/api/Depo/GetLastPageNumberDepoMessages/${this.itemsPerPage}`)
         .then(response => {
@@ -285,8 +293,10 @@ export default {
               })
               .catch(error => {
                 console.log(error);
+              })
+              .finally(() => {
+                this.loading = false;
               });
-          this.loading = false;
         })
   },
 };

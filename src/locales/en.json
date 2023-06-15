@@ -5,11 +5,11 @@
     },
     "main": {
         "home-page": "Main page",
-        "news": "News",
+        "news": "Depo-News",
         "news-desc": "the latest news",
-        "compass": "Compass",
+        "compass": "Depo-Compass",
         "compass-desc": "your guide to depository data on the securities market",
-        "message": "Reporter",
+        "message": "Depo-Reporter",
         "message-desc": "your primary source of information about important changes in the infrastructure of the securities market"
     },
     "others": {
@@ -17,10 +17,9 @@
         "pagination": "Pagination",
         "search": "Search by header",
         "more": "more",
-        "view-all-news": "View all news",
-        "view-all-compass": "View all compasses",
-        "view-all-message": "View all reporters",
+        "view-all": "View all",
         "go-back": "Return",
-        "watch": "Open the file"
+        "watch": "Open the file",
+        "loading": "Loading"
     }
 }

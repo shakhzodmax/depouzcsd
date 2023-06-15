@@ -1,10 +1,14 @@
 <template>
+  <div v-if="loading">
+  <LoadingState />
+  </div>
+  <div>
     <div
-        class="bg-gradient-to-tr from-orange-600 via-orange-500 to-yellow-500 h-56 w-full flex items-center dark:bg-gradient-to-tr dark:from-gray-900 dark:via-slate-800 dark:to-gray-900">
+        class="bg-gradient-to-tr from-indigo-600 via-indigo-500 to-sky-500 h-56 w-full flex items-center dark:bg-gradient-to-tr dark:from-gray-900 dark:via-slate-800 dark:to-gray-900">
       <div class="container mx-auto">
         <div
-            class="2xl:border-l-4 xl:border-l-4 lg:border-l-4 md:border-l-4 border-white dark:border-orange-600 2xl:text-start xl:text-start md:text-start text-center">
-          <h1 class="font-bold text-4xl text-white mb-2 indent-2 dark:text-orange-500">{{ $t('main.compass') }}</h1>
+            class="2xl:border-l-4 xl:border-l-4 lg:border-l-4 md:border-l-4 border-white dark:border-indigo-600 2xl:text-start xl:text-start md:text-start text-center">
+          <h1 class="font-bold text-4xl text-white mb-2 indent-2 dark:text-indigo-500 uppercase">{{ $t('main.compass') }}</h1>
         </div>
 
         <a onclick="window.history.back()"
@@ -34,7 +38,7 @@
                         d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
                         clip-rule="evenodd"></path>
                 </svg>
-                <span class="ml-1 font-medium md:ml-2 select-none">{{ $t('main.compass') }}</span>
+                <span class="ml-1 font-medium md:ml-2 select-none uppercase">{{ $t('main.compass') }}</span>
               </div>
             </li>
           </ol>
@@ -47,16 +51,16 @@
           <label class="dark:text-gray-400 font-medium">{{ $t('others.search') }}</label>
           <div class="relative flex space-x-2">
             <input type="text" v-model="searchRequest.title"
-                   class="block w-full text-sm text-gray-900 border border-gray-300 rounded-md bg-gray-50 dark:bg-gray-900 dark:text-gray-400 dark:focus:ring-orange-400 dark:border-gray-300"
+                   class="block w-full text-sm text-gray-900 border border-gray-300 rounded-md bg-gray-50 dark:bg-gray-900 dark:text-gray-400 dark:focus:ring-indigo-400 dark:border-gray-300"
                    required="required">
             <div v-if="this.isSearch" @click="clearSearch()"
-                 class="mr-2 h-9 w-14 hover:text-gray-500 flex justify-center items-center bg-white border dark:hover:text-gray-300 hover:border-orange-500 transition-all ease-linear cursor-pointer rounded-md dark:bg-gray-900 dark:text-gray-500 dark:hover:border-orange-500">
+                 class="mr-2 h-9 w-14 hover:text-gray-500 flex justify-center items-center bg-white border dark:hover:text-gray-300 hover:border-indigo-500 transition-all ease-linear cursor-pointer rounded-md dark:bg-gray-900 dark:text-gray-500 dark:hover:border-indigo-500">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-6 h-6">
                 <path fill-rule="evenodd" d="M5.47 5.47a.75.75 0 011.06 0L12 10.94l5.47-5.47a.75.75 0 111.06 1.06L13.06 12l5.47 5.47a.75.75 0 11-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 01-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 010-1.06z" clip-rule="evenodd" />
               </svg>
             </div>
             <div @click="searchQuery()"
-                 class="mr-2 h-9 w-14 hover:text-gray-500 flex justify-center items-center bg-white border dark:hover:text-gray-300 hover:border-orange-500 transition-all ease-linear cursor-pointer rounded-md dark:bg-gray-900 dark:text-gray-400 dark:hover:border-orange-500">
+                 class="mr-2 h-9 w-14 hover:text-gray-500 flex justify-center items-center bg-white border dark:hover:text-gray-300 hover:border-indigo-500 transition-all ease-linear cursor-pointer rounded-md dark:bg-gray-900 dark:text-gray-400 dark:hover:border-indigo-500">
               <svg aria-hidden="true" class="w-5 h-5" fill="none"
                    stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -69,7 +73,7 @@
           <label class="ml-2 dark:text-gray-400">{{ $t('others.pagination') }}</label>
           <div class="flex">
             <div :title="$t('others.goto-start')" @click="goToPage(1)"
-                 class="mr-2 h-9 w-9 flex justify-center items-center bg-white border hover:text-gray-500 dark:hover:text-gray-300 hover:border-orange-500 transition-all ease-linear cursor-pointer rounded-md dark:bg-gray-900 dark:text-gray-500 dark:hover:border-orange-500">
+                 class="mr-2 h-9 w-9 flex justify-center items-center bg-white border hover:text-gray-500 dark:hover:text-gray-300 hover:border-indigo-500 transition-all ease-linear cursor-pointer rounded-md dark:bg-gray-900 dark:text-gray-500 dark:hover:border-indigo-500">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                    stroke="currentColor" class="w-5 h-5">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -79,12 +83,12 @@
             <div class="flex space-x-2">
               <div v-for="page in visiblePages" :key="page" @click="goToPage(page)"
                    :class="{ active: currentPage === page }"
-                   class="h-9 w-9 flex justify-center items-center bg-white border hover:border-orange-500 dark:hover:text-gray-300 transition-all ease-linear cursor-pointer rounded-md dark:bg-gray-900 dark:text-gray-500 dark:hover:border-orange-500">
+                   class="h-9 w-9 flex justify-center items-center bg-white border hover:border-indigo-500 dark:hover:text-gray-300 transition-all ease-linear cursor-pointer rounded-md dark:bg-gray-900 dark:text-gray-500 dark:hover:border-indigo-500">
                 {{ page }}
               </div>
             </div>
             <div :title="$t('others.goto-end')" @click="goToPage(this.endIndex)"
-                 class="ml-2 h-9 w-9 flex justify-center items-center bg-white border hover:text-gray-500 dark:hover:text-gray-300 hover:border-orange-500 transition-all ease-linear cursor-pointer rounded-md dark:bg-gray-900 dark:text-gray-500 dark:hover:border-orange-500">
+                 class="ml-2 h-9 w-9 flex justify-center items-center bg-white border hover:text-gray-500 dark:hover:text-gray-300 hover:border-indigo-500 transition-all ease-linear cursor-pointer rounded-md dark:bg-gray-900 dark:text-gray-500 dark:hover:border-indigo-500">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                    stroke="currentColor" class="w-5 h-5">
                 <path stroke-linecap="round" stroke-linejoin="round"
@@ -93,8 +97,8 @@
             </div>
             <div class="relative">
               <div @click="toogleSettings()"
-                   :class="{'bg-orange-500 text-white' : showSettings === true}"
-                   class="ml-2 h-9 w-9 flex justify-center items-center border hover:text-gray-500 dark:hover:text-gray-300 hover:border-orange-500 transition-all ease-linear cursor-pointer rounded-md dark:bg-gray-900 dark:text-gray-500 dark:hover:border-orange-500">
+                   :class="{'bg-indigo-500 text-white' : showSettings === true}"
+                   class="ml-2 h-9 w-9 flex justify-center items-center border hover:text-gray-500 dark:hover:text-gray-300 hover:border-indigo-500 transition-all ease-linear cursor-pointer rounded-md dark:bg-gray-900 dark:text-gray-500 dark:hover:border-indigo-500">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                      stroke="currentColor" class="w-6 h-6">
                   <path stroke-linecap="round" stroke-linejoin="round"
@@ -105,16 +109,16 @@
                    class="z-50 right-0 mt-1 absolute p-2 bg-white border border-gray-300 rounded shadow-md dark:bg-gray-900 dark:text-gray-500">
                 <label>{{ $t('others.count') }}</label>
                 <div class="flex space-x-2">
-                  <div @click="changeView(8)" :class="{ 'text-gray-500 border-orange-500 dark:border-orange-500': this.itemsPerPage === '8' }"
-                       class="h-9 w-9 flex justify-center items-center border hover:text-gray-500 dark:hover:text-gray-300 hover:border-orange-500 transition-all ease-linear cursor-pointer rounded-md dark:bg-gray-900 dark:text-gray-500 dark:hover:border-orange-500">
+                  <div @click="changeView(8)" :class="{ 'text-gray-500 border-indigo-500 dark:border-indigo-500': this.itemsPerPage === '8' }"
+                       class="h-9 w-9 flex justify-center items-center border hover:text-gray-500 dark:hover:text-gray-300 hover:border-indigo-500 transition-all ease-linear cursor-pointer rounded-md dark:bg-gray-900 dark:text-gray-500 dark:hover:border-indigo-500">
                     8
                   </div>
-                  <div @click="changeView(16)" :class="{ 'text-gray-500 border-orange-500 dark:border-orange-500': this.itemsPerPage === '16' }"
-                       class="h-9 w-9 flex justify-center items-center border hover:text-gray-500 dark:hover:text-gray-300 hover:border-orange-500 transition-all ease-linear cursor-pointer rounded-md dark:bg-gray-900 dark:text-gray-500 dark:hover:border-orange-500">
+                  <div @click="changeView(16)" :class="{ 'text-gray-500 border-indigo-500 dark:border-indigo-500': this.itemsPerPage === '16' }"
+                       class="h-9 w-9 flex justify-center items-center border hover:text-gray-500 dark:hover:text-gray-300 hover:border-indigo-500 transition-all ease-linear cursor-pointer rounded-md dark:bg-gray-900 dark:text-gray-500 dark:hover:border-indigo-500">
                     16
                   </div>
-                  <div @click="changeView(32)" :class="{ 'text-gray-500 border-orange-500 dark:border-orange-500': this.itemsPerPage === '32' }"
-                       class="h-9 w-9 flex justify-center items-center border hover:text-gray-500 dark:hover:text-gray-300 hover:border-orange-500 transition-all ease-linear cursor-pointer rounded-md dark:bg-gray-900 dark:text-gray-500 dark:hover:border-orange-500">
+                  <div @click="changeView(32)" :class="{ 'text-gray-500 border-indigo-500 dark:border-indigo-500': this.itemsPerPage === '32' }"
+                       class="h-9 w-9 flex justify-center items-center border hover:text-gray-500 dark:hover:text-gray-300 hover:border-indigo-500 transition-all ease-linear cursor-pointer rounded-md dark:bg-gray-900 dark:text-gray-500 dark:hover:border-indigo-500">
                     32
                   </div>
                 </div>
@@ -135,23 +139,24 @@
           " /> 
       </div>
     </div>
+  </div>
 </template>
 
 <script>
 import CompassBlock from '@/components/CompassBlock.vue';
+import LoadingState from '@/components/LoadingState.vue';
+
 export default {
   components: {
-    CompassBlock
+    CompassBlock,
+    LoadingState
   },
   data() {
     return {
-      enteredPage: null,
       currentPage: 1,
       itemsPerPage: 8,
       endIndex: null,
       deposDate: [],
-      startDate: null,
-      endDate: null,
       showSettings: false,
       loading: true,
       isSearch: false,
@@ -209,7 +214,7 @@ export default {
     },
     searchQuery() {
       this.loading = true;
-      this.axios.post(`/api/Depo/GetCompassBySearchParameters`, this.searchRequest)
+      this.axios.post(`/api/Depo/DepoCompassBySearchParameters`, this.searchRequest)
           .then(response => {
             this.deposDate = response.data;
             this.isSearch = true;
@@ -225,8 +230,8 @@ export default {
       this.showSettings = !this.showSettings;
     },
     changeView(value) {
-      localStorage.setItem("itemsPerPage", value);
-      const count = localStorage.getItem("itemsPerPage");
+      localStorage.setItem("compassesPerPage", value);
+      const count = localStorage.getItem("compassesPerPage");
       this.itemsPerPage = count;
       this.loading = true;
       this.axios.get(`/api/Depo/GetLastPageNumberDepoCompass/${this.itemsPerPage}`)
@@ -237,14 +242,14 @@ export default {
             console.log(error);
           })
           .finally(() => {
-            this.axios.get(`/api/Depo/GetCompassNewsByPageNumber/1/${this.itemsPerPage}`)
+            this.axios.get(`/api/Depo/GetDepoCompassByPageNumber/1/${this.itemsPerPage}`)
                 .then(response => {
                   this.deposDate = response.data;
                 })
                 .catch(error => {
                   console.log(error);
                 });
-            this.loading = false;
+                this.loading = false;
           })
     },
     formatedDate(item) {
@@ -268,8 +273,8 @@ export default {
     },
   },
   mounted() {
-    if (localStorage.getItem("itemsPerPage")) {
-      this.itemsPerPage = localStorage.getItem("itemsPerPage");
+    if (localStorage.getItem("compassesPerPage")) {
+      this.itemsPerPage = localStorage.getItem("compassesPerPage");
     }
     this.axios.get(`/api/Depo/GetLastPageNumberDepoCompass/${this.itemsPerPage}`)
         .then(response => {
@@ -285,8 +290,10 @@ export default {
               })
               .catch(error => {
                 console.log(error);
+              })
+              .finally(() => {
+                this.loading = false;
               });
-          this.loading = false;
         })
   },
 };
@@ -310,7 +317,7 @@ export default {
 }
 
 .active {
-  background-color: #e16811;
+  background-color: #6575F8;
   color: white;
 }
 

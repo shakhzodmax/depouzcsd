@@ -2,9 +2,9 @@
       <div
           class="flex flex-col justify-center items-center relative rounded-lg hover:scale-[95%] shadow-md transition-all ease-linear cursor-pointer hover:bg-blue-500 select-none">
         <img :src="image" alt="title"
-             class="rounded-t-lg h-64 object-cover w-full">
+             class="rounded-t-lg h-64 object-fit w-full">
         <div class="flex flex-col justify-between w-full text-gray-500 p-2 rounded-b-lg text-sm bg-white z-50">
-            <h2 class="2xl:text-xl xl:text-xs lg:text-xs text-sm mb-4 break-after-all font-bold text-emerald-500">{{ title }}</h2>
+            <h2 class="2xl:text-xl xl:text-xs lg:text-xs text-sm mb-4 break-after-all font-bold text-emerald-500 uppercase">{{ title }}</h2>
           <div class="flex justify-between items-center">
             {{ this.formatedDate }}
             <div class="flex justify-center items-center text-emerald-500">
@@ -38,8 +38,7 @@ export default {
   },
   computed: {
     formatedDate() {
-      const options = {year: 'numeric', month: 'long', day: 'numeric'};
-      const date = new Date(this.date).toLocaleDateString('ru-RU', options);
+      const date = new Date(this.date).toLocaleDateString('ru-RU');
       return date;
     },
     image() {
